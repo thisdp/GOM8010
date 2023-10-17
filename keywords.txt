@@ -1,0 +1,57 @@
+#######################################
+# Syntax Coloring Map For GOM8010
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+M8010TXPack KEYWORD1
+M8010RXPack KEYWORD1
+M8010 KEYWORD1
+M8010Manager KEYWORD1
+M8010ReceiveCallBack KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+verify KEYWORD2
+getMotorID KEYWORD2
+setMotorID KEYWORD2
+setExpectedTorque KEYWORD2
+setExpectedTorqueByOffset KEYWORD2
+getExpectedTorque KEYWORD2
+setExpectedSpeed KEYWORD2
+setExpectedSpeedByOffset KEYWORD2
+getExpectedSpeed KEYWORD2
+setExpectedPosition KEYWORD2
+setExpectedPositionByOffset KEYWORD2
+getExpectedPosition KEYWORD2
+setPositionStiffness KEYWORD2
+setPositionStiffnessByOffset KEYWORD2
+getPositionStiffness KEYWORD2
+setSpeedStiffness KEYWORD2
+setSpeedStiffnessByOffset KEYWORD2
+getSpeedStiffness KEYWORD2
+getRealTorque KEYWORD2
+getRealSpeed KEYWORD2
+getRealPosition KEYWORD2
+isOnline KEYWORD2
+getTemperature KEYWORD2
+getErrorFlag KEYWORD2
+stop KEYWORD2
+serialize KEYWORD2
+registerMotor KEYWORD2
+update KEYWORD2
+calcCRC KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+MERROR_Normal LITERAL1
+MERROR_OverHeat LITERAL1
+MERROR_OverCurrent LITERAL1
+MERROR_OverVoltage LITERAL1
+MERROR_EncoderBroken LITERAL1
