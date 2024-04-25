@@ -169,6 +169,7 @@ M8010Manager::M8010Manager(int uart_nr):RS485(uart_nr){
   for(uint8_t i=0;i<15;i++){
     motorList[i] = 0;
     failedPacks[i] = 0;
+    failedPacksTotal[i] = 0;
   }
 }
 
@@ -180,6 +181,7 @@ M8010Manager::M8010Manager(const HardwareSerial& serial):RS485(serial){
   for(uint8_t i=0;i<15;i++){
     motorList[i] = 0;
     failedPacks[i] = 0;
+    failedPacksTotal[i] = 0;
   }
 }
 
@@ -215,9 +217,14 @@ void M8010Manager::update(){
               motorList[currentMotorID]->rxPack = rxPackReceive;
               motorList[currentMotorID]->online = true;
               if(motorList[currentMotorID]->onReceived) motorList[currentMotorID]->onReceived();
+			  failedPacks[currentMotorID] = 0;
             }
           }else{
             failedPacks[currentMotorID] ++;
+			failedPacksTotal[currentMotorID] ++;
+			if(failedPacks[currentMotorID] >= 5){
+              motorList[currentMotorID]->online = false;
+			}
           }
           receiveStatus = M8010Mgr_Idle;
         }
@@ -227,6 +234,10 @@ void M8010Manager::update(){
   if(receiveStatus != M8010Mgr_Idle && micros()-lastReceiveTick>=100){  //如果在非空闲状态下没有读取到数据，并且超时
     receiveStatus = M8010Mgr_Idle;
     failedPacks[currentMotorID] ++; //当前丢包
+	failedPacksTotal[currentMotorID] ++;
+	if(failedPacks[currentMotorID] >= 3){
+	  motorList[currentMotorID]->online = false;
+	}
   }
   if(receiveStatus == M8010Mgr_Idle){
     for(uint8_t i=nextMotorID;i<15;i++){ //从nextMotorID开始寻找已注册电机

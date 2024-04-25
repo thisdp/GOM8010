@@ -62,7 +62,7 @@ class M8010{
 public:
   M8010TXPack txPack;
   M8010RXPack rxPack;
-  M8010(uint8_t motorID, uint8_t mode = 1);
+  M8010(uint8_t motorID = 0, uint8_t mode = 1);
   uint8_t getMotorID();
   void setMotorID(uint8_t id);
   //includeReduction为是否将减速机构的效果考虑进目标参数内
@@ -107,6 +107,7 @@ public:
   M8010Manager(const HardwareSerial& serial);
   M8010 *motorList[15]; //电机列表
   uint32_t failedPacks[15];
+  uint32_t failedPacksTotal[15];
   bool registerMotor(M8010 &motor);
   void update();
   uint8_t nextMotorID;
