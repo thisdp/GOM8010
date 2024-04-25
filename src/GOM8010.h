@@ -91,6 +91,8 @@ public:
   uint8_t* serialize();
   M8010ReceiveCallBack onReceived;
   bool online;
+  uint32_t failedPacks;
+  uint32_t failedPacksTotal;
 private:
   uint8_t ID;
   uint8_t status;
@@ -106,8 +108,6 @@ public:
   M8010Manager(int uart_nr);
   M8010Manager(const HardwareSerial& serial);
   M8010 *motorList[15]; //电机列表
-  uint32_t failedPacks[15];
-  uint32_t failedPacksTotal[15];
   bool registerMotor(M8010 &motor);
   void update();
   uint8_t nextMotorID;
